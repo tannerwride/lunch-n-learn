@@ -175,24 +175,24 @@ Since we want our jobs to run sequentially, we add the `requires` directive.
 
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
       - run: sleep 5
   test:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A more familiar hi"
       - run: sleep 5
 workflows:
-  version: 2
+  version: 2.1
   build_and_test:
     jobs:
       - build
@@ -206,11 +206,11 @@ workflows:
 Sometimes you'll have more lengthy jobs (integration or browser testing) that can be broken into parallel tracks. If all these jobs pass, you can merge back into final steps (like deployment).  This technique is commonly reffered to as fan-out/fan-in.
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
@@ -219,14 +219,14 @@ jobs:
       
   testa:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A more familiar hi"
       - run: sleep 5
   testb:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A localized Salut"
@@ -235,7 +235,7 @@ jobs:
       
   deploy:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A final goodbye"
@@ -243,7 +243,7 @@ jobs:
       
       
 workflows:
-  version: 2
+  version: 2.1
   build_and_test:
     jobs:
       - build
