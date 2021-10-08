@@ -97,7 +97,7 @@ On the next screen, you're given some options for configuring your project on Ci
 
 You should see your build start to run automatically—and pass! So, what just happened? Click on the green button and let's investigate.
 
-1. **Spin up environment:** CircleCI used the `circleci/ruby:2.4.1` Docker image to launch a virtual computing environment.
+1. **Spin up environment:** CircleCI used the `cimg/ruby:3.0.2` Docker image to launch a virtual computing environment.
 
 2. **Checkout code:** CircleCI checked out your GitHub repository and "cloned" it into the virtual environment launched in step 1
 
@@ -117,17 +117,17 @@ To see Workflows in action we can edit our `.circle/config.yml` file. Once you h
 That should look similar to the code block below:
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"      
@@ -139,24 +139,24 @@ We need to add a `workflows` section to our config file. The workflows section c
 
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
       - run: sleep 5
   test:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A more familiar hi"
       - run: sleep 5
 workflows:
-  version: 2
+  version: 2.1
   build_and_test:
     jobs:
       - build
