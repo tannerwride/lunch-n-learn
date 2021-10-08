@@ -268,11 +268,11 @@ You can read more about workflows here: https://circleci.com/docs/2.0/workflows/
 Each Workflow has an associated Workspace which can be used to transfer files to downstream jobs as the workflow progresses. You can use workspaces to pass along data that is unique to this run and which is needed for downstream jobs. Try updating `config.yml` to the following:
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: mkdir -p my_workspace
@@ -285,7 +285,7 @@ jobs:
             - echo-output      
   testa:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
@@ -295,7 +295,7 @@ jobs:
           
   testb:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
@@ -311,7 +311,7 @@ jobs:
           
   deploy:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
@@ -322,7 +322,7 @@ jobs:
           cat my_workspace/echo-output
 
 workflows:
-  version: 2
+  version: 2.1
   build_and_test:
     jobs:
       - build
