@@ -65,17 +65,17 @@ On CircleCI 2.0, this file must be called `config.yml` and must be in a hidden f
 * To start out with a simple config.yml, copy the text below into the file editing window on GitHub:
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.4.1
+    docker: 
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
 ```
       
-The `- image: circleci/ruby:2.4.1` text tells CircleCI what Docker image to use when it builds your project. Circle will use the image to boot up a "container" — a virtual computing environment where it will install any languages, system utilities, dependencies, web browsers, etc., that your project might need in order to run.   (CircleCI provides images for most every language)[https://circleci.com/docs/2.0/circleci-images/] based on populare community images.
+The `- image: cimg/ruby:3.0.2` text tells CircleCI what Docker image to use when it builds your project. Circle will use the image to boot up a "container" — a virtual computing environment where it will install any languages, system utilities, dependencies, web browsers, etc., that your project might need in order to run.   (CircleCI provides images for most every language)[https://circleci.com/docs/2.0/circleci-images/] based on populare community images.
 
 ### Setting up your build on CircleCI
 
