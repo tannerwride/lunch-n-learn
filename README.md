@@ -87,7 +87,7 @@ Next, you will be given the option of "following" any projects you have access t
 
 To add your new repo, ensure that your GitHub account is selected in the dropdown in the upper-left, find the repository you just created below, and click the "Setup project" button next to it.
 
-<img src="images/CircleCI-add-new-project-list.png">
+<img src="images/circleci2.1setupproject.png">
 
 On the next screen, you're given some options for configuring your project on CircleCI.  The options help you generate a sample config.yml yo start with.  For now leave everything as-is for now and just click the "Start building" button a bit down the page on the right.
 
