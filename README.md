@@ -97,7 +97,9 @@ Once the file has been found, click "Let's Go."
 
 ### Running your first CircleCI build!
 
-You should see your build start to run automatically—and pass! So, what just happened? Click on the green button and let's investigate.
+You should see your build start to run automatically—and pass! So, what just happened? Click on the build and let's investigate.
+
+<img src="images/clickbuild.png">
 
 1. **Spin up environment:** CircleCI used the `cimg/ruby:3.0.2` Docker image to launch a virtual computing environment.
 
