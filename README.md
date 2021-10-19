@@ -171,9 +171,13 @@ Commit these changes to your repository and navigate back over to the CircleCI d
 
 <img src="images/navigatetodash.png">
 
-And drilling a little deeper into our workflow...
+Click on the build_and_test workflow.
 
-<img src="images/inside-workflows-circle-101-running.png">
+<img src="images/buildandtest.png">
+
+You can see that the two jobs have run concurrently.
+
+<img src="images/concurrent.png">
 
 Since we want our jobs to run sequentially, we add the `requires` directive.
 
