@@ -169,7 +169,7 @@ workflows:
 
 Commit these changes to your repository and navigate back over to the CircleCI dashboard. 
 
-<img src="images/workflows-circle-101-running.png">
+<img src="images/navigatetodash.png">
 
 And drilling a little deeper into our workflow...
 
