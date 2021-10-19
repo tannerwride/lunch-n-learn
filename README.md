@@ -360,9 +360,9 @@ For those who are comfortable with the terminal, you can SSH directly into your 
 *Note that you will need to add your SSH keys to your GitHub account:
 https://help.github.com/articles/connecting-to-github-with-ssh/*
 
-<img src="images/rebuild-with-SSH.png">
+<img src="images/rerunwithssh.png">
 
-<img src="images/SSH-build-terminal-string.png">
+<img src="images/sshbuildterminal.png">
 
 Copy the `ssh` string from the enabling SSH section of your build. Open a terminal and paste in the `ssh` string. 
 
