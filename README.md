@@ -89,7 +89,9 @@ To add your new repo, ensure that your GitHub account is selected in the dropdow
 
 <img src="images/circleci2.1setupproject.png">
 
+
 Once you have selected "Set Up Project", a window will appear asking you to select a config file. Select the button that says "If you already have a .circleci/config.yml in your repo, select the branch it's on to start building." A green checkmark will confirm the file has been found.
+
 
 <img src="images/selectconfigfile.png">
 
