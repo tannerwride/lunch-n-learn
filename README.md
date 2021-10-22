@@ -65,17 +65,17 @@ On CircleCI 2.0, this file must be called `config.yml` and must be in a hidden f
 * To start out with a simple config.yml, copy the text below into the file editing window on GitHub:
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.4.1
+    docker: 
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
 ```
       
-The `- image: circleci/ruby:2.4.1` text tells CircleCI what Docker image to use when it builds your project. Circle will use the image to boot up a "container" — a virtual computing environment where it will install any languages, system utilities, dependencies, web browsers, etc., that your project might need in order to run.   (CircleCI provides images for most every language)[https://circleci.com/docs/2.0/circleci-images/] based on populare community images.
+The `- image: cimg/ruby:3.0.2` text tells CircleCI what Docker image to use when it builds your project. Circle will use the image to boot up a "container" — a virtual computing environment where it will install any languages, system utilities, dependencies, web browsers, etc., that your project might need in order to run.   (CircleCI provides images for most every language)[https://circleci.com/docs/2.0/circleci-images/] based on populare community images.
 
 ### Setting up your build on CircleCI
 
@@ -89,15 +89,21 @@ To add your new repo, ensure that your GitHub account is selected in the dropdow
 
 <img src="images/circleci2.1setupproject.png">
 
-On the next screen, you're given some options for configuring your project on CircleCI.  The options help you generate a sample config.yml yo start with.  For now leave everything as-is for now and just click the "Start building" button a bit down the page on the right.
 
-<img src="images/CircleCI-2.0-start-building.png">
+Once you have selected "Set Up Project", a window will appear asking you to select a config file. Select the button that says "If you already have a .circleci/config.yml in your repo, select the branch it's on to start building." A green checkmark will confirm the file has been found.
+
+
+<img src="images/selectconfigfile.png">
+
+Once the file has been found, click "Let's Go."
 
 ### Running your first CircleCI build!
 
-You should see your build start to run automatically—and pass! So, what just happened? Click on the green button and let's investigate.
+You should see your build start to run automatically—and pass! So, what just happened? Click on the build and let's investigate.
 
-1. **Spin up environment:** CircleCI used the `circleci/ruby:2.4.1` Docker image to launch a virtual computing environment.
+<img src="images/clickbuild.png">
+
+1. **Spin up environment:** CircleCI used the `cimg/ruby:3.0.2` Docker image to launch a virtual computing environment.
 
 2. **Checkout code:** CircleCI checked out your GitHub repository and "cloned" it into the virtual environment launched in step 1
 
@@ -117,17 +123,17 @@ To see Workflows in action we can edit our `.circle/config.yml` file. Once you h
 That should look similar to the code block below:
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"      
@@ -139,24 +145,24 @@ We need to add a `workflows` section to our config file. The workflows section c
 
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
       - run: sleep 5
   test:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A more familiar hi"
       - run: sleep 5
 workflows:
-  version: 2
+  version: 2.1
   build_and_test:
     jobs:
       - build
@@ -165,34 +171,38 @@ workflows:
 
 Commit these changes to your repository and navigate back over to the CircleCI dashboard. 
 
-<img src="images/workflows-circle-101-running.png">
+<img src="images/navigatetodash.png">
 
-And drilling a little deeper into our workflow...
+Click on the build_and_test workflow.
 
-<img src="images/inside-workflows-circle-101-running.png">
+<img src="images/buildandtest.png">
+
+You can see that the two jobs have run concurrently.
+
+<img src="images/concurrent.png">
 
 Since we want our jobs to run sequentially, we add the `requires` directive.
 
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
       - run: sleep 5
   test:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A more familiar hi"
       - run: sleep 5
 workflows:
-  version: 2
+  version: 2.1
   build_and_test:
     jobs:
       - build
@@ -206,11 +216,11 @@ workflows:
 Sometimes you'll have more lengthy jobs (integration or browser testing) that can be broken into parallel tracks. If all these jobs pass, you can merge back into final steps (like deployment).  This technique is commonly reffered to as fan-out/fan-in.
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A first hello"
@@ -219,14 +229,14 @@ jobs:
       
   testa:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A more familiar hi"
       - run: sleep 5
   testb:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A localized Salut"
@@ -235,7 +245,7 @@ jobs:
       
   deploy:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: echo "A final goodbye"
@@ -243,7 +253,7 @@ jobs:
       
       
 workflows:
-  version: 2
+  version: 2.1
   build_and_test:
     jobs:
       - build
@@ -268,11 +278,11 @@ You can read more about workflows here: https://circleci.com/docs/2.0/workflows/
 Each Workflow has an associated Workspace which can be used to transfer files to downstream jobs as the workflow progresses. You can use workspaces to pass along data that is unique to this run and which is needed for downstream jobs. Try updating `config.yml` to the following:
 
 ```yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run: mkdir -p my_workspace
@@ -285,7 +295,7 @@ jobs:
             - echo-output      
   testa:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
@@ -295,7 +305,7 @@ jobs:
           
   testb:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
@@ -311,7 +321,7 @@ jobs:
           
   deploy:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0.2
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
@@ -322,7 +332,7 @@ jobs:
           cat my_workspace/echo-output
 
 workflows:
-  version: 2
+  version: 2.1
   build_and_test:
     jobs:
       - build
@@ -352,9 +362,9 @@ For those who are comfortable with the terminal, you can SSH directly into your 
 *Note that you will need to add your SSH keys to your GitHub account:
 https://help.github.com/articles/connecting-to-github-with-ssh/*
 
-<img src="images/rebuild-with-SSH.png">
+<img src="images/rerunwithssh.png">
 
-<img src="images/SSH-build-terminal-string.png">
+<img src="images/sshbuildterminal.png">
 
 Copy the `ssh` string from the enabling SSH section of your build. Open a terminal and paste in the `ssh` string. 
 
