@@ -58,7 +58,7 @@ Set up in minutes out of the box, or fully customize to suit your needs.*
 CircleCI uses a [YAML](https://en.wikipedia.org/wiki/YAML) file to identify how you want your testing environment setup and what tests you want to run.
 On CircleCI 2.0, this file must be called `config.yml` and must be in a hidden folder called `.circleci` (on Mac, Linux, and Windows systems, files and folders whose names start with a period are treated as system files that are hidden from users by default).
 
- * To create the file and folder on GitHub, click the **"Create new file"** button the repo page and type `.circleci/config.yml`.
+ * To create the file and folder on GitHub, click the **"Add file"** button on the repo page, choose **Create new file**, and type `.circleci/config.yml` in the box.
   
  * You should now have in front of you a blank `config.yml` file in a `.circleci` folder.
 
@@ -75,7 +75,9 @@ jobs:
       - run: echo "A first hello"
 ```
       
-The `- image: cimg/ruby:3.0.2` text tells CircleCI what Docker image to use when it builds your project. Circle will use the image to boot up a "container" — a virtual computing environment where it will install any languages, system utilities, dependencies, web browsers, etc., that your project might need in order to run.   (CircleCI provides images for most every language)[https://circleci.com/docs/2.0/circleci-images/] based on populare community images.
+The `- image: cimg/ruby:3.0.2` text tells CircleCI what Docker image to use when it builds your project. Circle will use the image to boot up a "container" — a virtual computing environment where it will install any languages, system utilities, dependencies, web browsers, etc., that your project might need in order to run.   [CircleCI provides images for most every language)[https://circleci.com/docs/2.0/circleci-images/] based on popular community images.
+
+Once you've created your config.yml file, click the green **Commit** button at the bottom of the page.
 
 ### Setting up your build on CircleCI
 
@@ -162,7 +164,6 @@ jobs:
       - run: echo "A more familiar hi"
       - run: sleep 5
 workflows:
-  version: 2.1
   build_and_test:
     jobs:
       - build
@@ -202,7 +203,6 @@ jobs:
       - run: echo "A more familiar hi"
       - run: sleep 5
 workflows:
-  version: 2.1
   build_and_test:
     jobs:
       - build
@@ -253,7 +253,6 @@ jobs:
       
       
 workflows:
-  version: 2.1
   build_and_test:
     jobs:
       - build
@@ -332,7 +331,6 @@ jobs:
           cat my_workspace/echo-output
 
 workflows:
-  version: 2.1
   build_and_test:
     jobs:
       - build
